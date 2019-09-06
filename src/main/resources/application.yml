@@ -1,0 +1,44 @@
+spring: #spring.mvc视图解析器
+  mvc:
+    view:
+      suffix: .jsp    #后缀;
+      prefix: /jsps/  #前缀;
+    static-path-pattern: /static/** #设置静态资源路径(url)格式;
+  devtools: #开启热部署
+    restart:
+      enabled: true
+
+  #配置数据源
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jiuhui?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: root
+
+server:
+  port: 8080  #tomcat端口修改
+  jsp-servlet:  #jsp热部署
+    init-parameters:
+      development: true
+
+#读取mapper映射文件地址
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  #驼峰命名
+
+  #起别名
+  type-aliases-package: com.buba.bean
+
+  #驼峰命名
+  configuration-properties:
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+#打印sql 日制
+
+logging:
+  level:
+    com:
+      buba:
+        mapper: debug
